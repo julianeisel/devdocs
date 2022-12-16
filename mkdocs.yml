@@ -1,0 +1,27 @@
+site_name: Asset System
+theme:
+  name: material
+
+nav:
+  - 'Introduction': 'index.md'
+  - 'Fundamentals':
+    - 'fundamentals/index.md'
+    - 'fundamentals/from_file_browser_to_asset_system.md'
+  - 'Backend':
+    - 'backend/index.md'
+    - 'backend/asset_list_api.md'
+  - 'User Interface':
+    - 'user_interface/index.md'
+  - 'FAQ.md'
+  - 'contributing.md'
+
+markdown_extensions:
+  - toc:
+      permalink: True
+  - callouts
+
+plugins:
+  - section-index
+
+extra_css:
+  - stylesheets/extra.css
