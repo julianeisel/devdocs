@@ -19,6 +19,7 @@ markdown_extensions:
   - toc:
       permalink: True
   - callouts
+  - pymdownx.superfences
 
 plugins:
   - section-index
