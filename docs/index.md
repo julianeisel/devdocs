@@ -1,6 +1,6 @@
 # Asset System
 
-__The asset system brings a native understanding of assets (data-blocks packaged for sharing/reuse) to Blender's core design, and enriches it with a number of features for great asset based workflows.__
+__The asset system brings a native understanding of assets (entities packaged for sharing/reuse) to Blender's core design, and enriches it with a number of features for great asset based workflows.__
 
 For example it includes: The asset browser, asset shelfs, asset libraries, asset library loading, asset catalogs, asset metadata, etc.
 

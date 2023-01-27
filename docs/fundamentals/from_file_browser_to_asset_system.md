@@ -1,13 +1,13 @@
 # From File Browser to Asset System
 
-__The asset system was born out of an earlier version of the asset functionality, which was entirely based on the File Browser. The transition from the file browser to the dedicated asset system is ongoing, with implications on the current code.__
+__Asset functionality used to be built entirely on top of the File Browser. The asset system is supposed to change that, and the transition to it is ongoing. This has important implications on the current code.__
 
 ## The File Browser as Asset Browser
 
-The initial introduction of asset functionality focused on delivering an Asset Browser to deal with ID data-blocks that were marked as assets. The File Browser seemed like a good starting point, since it provided a similar frontend, and a backend that served similar needs (support for asynchronous recursive loading of directories and .blend file contents, asynchronous preview loading, filtering, ...). However, the File Browser started showing a number of significant issues, and requirements changed too: Now assets should be accessible outside of the asset browser as well.
+The initial introduction of asset functionality focused on delivering an Asset Browser to deal with ID data-blocks that were marked as assets. The File Browser seemed like a good starting point, since it served similar needs on the front- and backend (support for asynchronous recursive loading of directories and .blend file contents, asynchronous preview loading, filtering, ...). However, the File Browser started showing a number of significant issues, and requirements changed too: Assets should now become a first class citizen throughout Blender, with access from outside the Asset Browser as well.
 
 
->? NOTE: **Some Problems**
+>? INFO: **More info: Problems with the File Browser as Asset Browser**
 > Examples of problems the file browser based design was showing:
 >
 > - Scrolling through big libraries (a few thousand assets) would cause minute long freezes. Cause was the preview loading which tries to be smart and fails miserably. This is not easy to address in the current design.

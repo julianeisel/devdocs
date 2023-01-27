@@ -6,10 +6,13 @@ nav:
   - 'Introduction': 'index.md'
   - 'Fundamentals':
     - 'fundamentals/index.md'
+    - 'fundamentals/architectural_overview.md'
     - 'fundamentals/from_file_browser_to_asset_system.md'
   - 'Backend':
     - 'backend/index.md'
+    - 'backend/asset_catalogs.md'
     - 'backend/asset_list_api.md'
+    - 'backend/asset_index.md'
   - 'User Interface':
     - 'user_interface/index.md'
   - 'FAQ.md'
@@ -20,6 +23,7 @@ markdown_extensions:
       permalink: True
   - callouts
   - pymdownx.superfences
+  - def_list
 
 plugins:
   - section-index
