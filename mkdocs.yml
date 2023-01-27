@@ -1,6 +1,14 @@
 site_name: Asset System
+repo_url: https://github.com/julianeisel/devdocs
+
 theme:
   name: material
+  features:
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.action.view
+    - content.action.edit
 
 nav:
   - 'Introduction': 'index.md'
@@ -15,7 +23,7 @@ nav:
     - 'backend/asset_index.md'
   - 'User Interface':
     - 'user_interface/index.md'
-  - 'FAQ.md'
+  - 'FAQ': 'FAQ.md'
   - 'contributing.md'
 
 markdown_extensions:
@@ -27,6 +35,11 @@ markdown_extensions:
 
 plugins:
   - section-index
+  - glightbox
+  - search
+  - git-revision-date-localized:
+      type: timeago
+      enable_creation_date: true
 
 extra_css:
   - stylesheets/extra.css
