@@ -6,6 +6,8 @@ theme:
   name: material
   features:
     - navigation.top
+    - navigation.instant
+    - navigation.sections
     - search.suggest
     - search.highlight
     - content.action.view
@@ -29,7 +31,7 @@ theme:
 nav:
   - 'Introduction': 'index.md'
   - 'Fundamentals':
-    - 'fundamentals/index.md'
+    - 'Important Concepts': 'fundamentals/index.md'
     - 'fundamentals/architectural_overview.md'
     - 'fundamentals/from_file_browser_to_asset_system.md'
   - 'Backend':
@@ -39,8 +41,11 @@ nav:
     - 'backend/asset_index.md'
   - 'User Interface':
     - 'user_interface/index.md'
-  - 'FAQ': 'FAQ.md'
-  - 'contributing.md'
+    - 'user_interface/asset_browser.md'
+    - 'user_interface/asset_shelf.md'
+  - ' ':
+    - 'FAQ': 'FAQ.md'
+    - 'contributing.md'
 
 markdown_extensions:
   - toc:

@@ -1,6 +1,6 @@
 # Asset Indexing
 
-Asset indexing provides an optimized way to load asset representations into the asset system. With asset indexing, users have to spend significantly less time waiting for asset libraries to be loaded and ready to use.
+__Asset indexing provides an optimized way to load asset representations into the asset system. With asset indexing, users have to spend significantly less time waiting for asset libraries to be loaded and ready to use.__
 
 Information about the asset like its asset meta-data (link), name and data-block type is extracted from asset files and stored in asset index files. Asset indexing can observe the content of asset libraries to perform minimal updates to the asset index files.
 
