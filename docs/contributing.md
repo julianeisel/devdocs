@@ -6,6 +6,21 @@
 pip install mkdocs-material markdown-callouts mkdocs-section-index pygments pymdown-extensions mkdocs-glightbox mkdocs-git-revision-date-localized-plugin
 ```
 
+## Adding Pages
+
+When adding a page, make sure to register it in the `mkdocs.yml`, otherwise it will not show up.
+
+## Adding/Enabling Extensions & Plugins
+
+Extensions and plugins are controlled via the `mkdocs.yml` file. If additional Python modules are necessary for one, it needs to be added to the following places:
+
+- In the `pip install` command of the instructions above [above](#build-this-documentation)
+- The GitHub Actions workflow configuration in `.github/workflow/ci.yml`, to deploy the generated documentation HTML.
+
+## Configuring (Settings, Extensions, Plugins, etc.)
+
+Settings, including the enabled extensions and plugins are controlled via the `mkdocs.yml` file.
+
 ## License
 
 The content of this documentation is available under a [Creative Commons
