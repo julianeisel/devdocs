@@ -3,7 +3,7 @@
 ## Build this Documentation
 
 ```
-pip install markdown-callouts mkdocs-section-index pygments pymdown-extensions mkdocs-glightbox mkdocs-git-revision-date-localized-plugin
+pip install mkdocs-material markdown-callouts mkdocs-section-index pygments pymdown-extensions mkdocs-glightbox mkdocs-git-revision-date-localized-plugin
 ```
 
 ## License
