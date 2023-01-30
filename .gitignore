@@ -1,1 +1,3 @@
 .cache/
+# The default documentation build output directory
+site/
