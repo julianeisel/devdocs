@@ -36,6 +36,33 @@ nav:
   - 'Home': 'index.md'
   - 'Developer Handbook':
     - 'developer_handbook/index.md'
+    - 'New Developer Introduction':
+      - 'developer_handbook/new_developer_introduction/index.md'
+      - 'Advice': 'developer_handbook/new_developer_introduction/advice.md'
+      - 'Choosing a First Task': 'developer_handbook/new_developer_introduction/choosing_a_first_task.md'
+    - 'Building Blender':
+      - 'developer_handbook/building_blender/index.md'
+      - 'Linux': 'developer_handbook/building_blender/linux.md'
+      - 'Windows': 'developer_handbook/building_blender/windows.md'
+      - 'macOS': 'developer_handbook/building_blender/macOS.md'
+    - 'Process':
+      - 'developer_handbook/process/index.md'
+      - 'Release Cycle': 'developer_handbook/process/release_cycle.md'
+      - 'Contributing (Review & Commit)': 'developer_handbook/process/contributing.md'
+    - 'Modules': 'developer_handbook/modules.md'
+    - 'Guidelines':
+      - 'developer_handbook/guidelines/index.md'
+      - 'C/C++ Code Style': 'developer_handbook/guidelines/c_cpp_code_style.md'
+      - 'Python Code Style': 'developer_handbook/guidelines/python_code_style.md'
+      - 'Commit Messages': 'developer_handbook/guidelines/commit_messages.md'
+      - 'Release Notes': 'developer_handbook/guidelines/commit_messages.md'
+    - 'Testing':
+      - 'developer_handbook/testing/index.md'
+      - 'C/C++': 'developer_handbook/testing/c_cpp_tests.md'
+      - 'Python': 'developer_handbook/testing/python_tests.md'
+    - 'Tools':
+      - 'developer_handbook/tools/index.md'
+      - 'Address Sanitizer': 'developer_handbook/tools/address_sanitizer.md'
   - 'Core Data Management':
     - 'core_data_management/index.md'
     - 'Datablocks and Main Database':
