@@ -1,6 +1,6 @@
 # Architectural Overview
 
-By only looking at the main components, the asset system can be simplified to this:
+The entire asset system can be stripped down to it's main components:
 
 <!-- Abusing state diagrams a bit here :) -->
 ``` mermaid
