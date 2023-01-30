@@ -1,9 +1,41 @@
 # Contributing
 
-## Build this Documentation
+This documentation is built using [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/).
 
+## Building this Documentation
+
+### 1. Get the Sources
+
+In a directory of your choice (assumes `git` is installed):
+```bash
+$ git clone https://github.com/julianeisel/devdocs.git
+$ cd devdocs
 ```
-pip install mkdocs-material markdown-callouts mkdocs-section-index pygments pymdown-extensions mkdocs-glightbox mkdocs-git-revision-date-localized-plugin
+
+### 2. Install Prerequisites
+
+Install Material for MkDocs and all the necessary extensions/plugins:
+
+```bash
+python -m pip install mkdocs-material markdown-callouts mkdocs-section-index pygments pymdown-extensions mkdocs-glightbox mkdocs-git-revision-date-localized-plugin
+```
+You may have to use `python3` instead of `python`.
+
+### 3. Build
+
+#### Build and Live Reload
+
+While working on the documentation, it is useful to use the life reloading feature from MkDocs:
+```bash
+mkdocs serve
+```
+This will print a URL under which you will find the latest build of your documentation that is updated continuously while your working on it.
+
+#### Build only
+
+To only build the documentation without serving it:
+```
+mkdocs build
 ```
 
 ## Adding Pages
