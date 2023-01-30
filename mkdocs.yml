@@ -33,7 +33,7 @@ theme:
 
 
 nav:
-  - 'Home': 'home.md'
+  - 'Home': 'index.md'
   - 'Developer Handbook':
     - 'developer_handbook/index.md'
   - 'Core Data Management':
