@@ -1,0 +1,1 @@
+This is the Blender Developer Handbook. It will guide you through all the basic information needed so you can start developing Blender.

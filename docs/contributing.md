@@ -1,4 +1,4 @@
-# Contributing
+# Contribute Documentation
 
 This documentation is built using [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/).
 

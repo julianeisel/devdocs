@@ -1,10 +1,14 @@
-site_name: Asset System
+site_name: Blender Developer Documentation
 repo_url: https://github.com/julianeisel/devdocs
 edit_uri: edit/main/docs
 
 theme:
   name: material
+  icon:
+    # Blender logos comes with material icons :)
+    logo: material/blender-software
   features:
+    - navigation.tabs
     - navigation.top
     - navigation.instant
     - navigation.sections
@@ -29,23 +33,60 @@ theme:
 
 
 nav:
-  - 'Introduction': 'index.md'
-  - 'Fundamentals':
-    - 'Important Concepts': 'fundamentals/index.md'
-    - 'fundamentals/architectural_overview.md'
-    - 'fundamentals/from_file_browser_to_asset_system.md'
-  - 'Backend':
-    - 'backend/index.md'
-    - 'backend/asset_catalogs.md'
-    - 'backend/asset_list_api.md'
-    - 'backend/asset_index.md'
+  - 'Home': 'home.md'
+  - 'Developer Handbook':
+    - 'developer_handbook/index.md'
+  - 'Core Data Management':
+    - 'core_data_management/index.md'
+    - 'Datablocks and Main Database':
+      - 'core_data_management/datablocks_and_main_database/index.md'
+      - 'core_data_management/datablocks_and_main_database/dummy_page.md'
+    - 'Blend-File Read/Write':
+      - 'core_data_management/blend_file_read_write/index.md'
+      - 'core_data_management/blend_file_read_write/dummy_page.md'
+    - 'Undo/Redo':
+      - 'core_data_management/undo_redo/index.md'
+      - 'core_data_management/undo_redo/dummy_page.md'
+    - 'DNA':
+      - 'core_data_management/dna/index.md'
+    - 'RNA':
+      - 'core_data_management/rna/index.md'
+  - 'Asset System':
+    - 'Introduction': 'asset_system/index.md'
+    - 'Fundamentals':
+      - 'Important Concepts': 'asset_system/fundamentals/index.md'
+      - 'asset_system/fundamentals/architectural_overview.md'
+      - 'asset_system/fundamentals/from_file_browser_to_asset_system.md'
+    - 'Backend':
+      - 'asset_system/backend/index.md'
+      - 'asset_system/backend/asset_catalogs.md'
+      - 'asset_system/backend/asset_list_api.md'
+      - 'asset_system/backend/asset_index.md'
+    - 'User Interface':
+      - 'asset_system/user_interface/index.md'
+      - 'asset_system/user_interface/asset_browser.md'
+      - 'asset_system/user_interface/asset_shelf.md'
+    - ' ':
+      - 'FAQ': 'asset_system/FAQ.md'
+  # Some dummy categories to show/test main navigation:
+  - 'Animation':
+    - 'animation/index.md'
   - 'User Interface':
-    - 'user_interface/index.md'
-    - 'user_interface/asset_browser.md'
-    - 'user_interface/asset_shelf.md'
-  - ' ':
-    - 'FAQ': 'FAQ.md'
-    - 'contributing.md'
+    - 'user_interface_core/index.md'
+    - 'Window Manager'
+  - 'Rendering':
+    - 'rendering/index.md'
+  # - 'Nodes & Physics':
+  #   - 'nodes_and_physics/index.md'
+  # - 'Eevee & Viewport':
+  #   - 'eevee_and_viewport/index.md'
+  # - 'Sculpt & Paint':
+  #   - 'sculpt_and_paint/index.md'
+  # - 'Modeling':
+  #   - 'modeling/index.md'
+  # - 'Platforms, Builds, Tests & Devices':
+  #   - 'platforms_builds_tests_and_devices/index.md'
+  - 'contributing.md'
 
 markdown_extensions:
   - toc:
@@ -56,7 +97,12 @@ markdown_extensions:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
+  - attr_list
   - def_list
+  - md_in_html
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
 
 plugins:
   - section-index
