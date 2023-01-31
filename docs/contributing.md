@@ -25,7 +25,7 @@ You may have to use `python3` instead of `python`.
 
 #### Build and Live Reload
 
-While working on the documentation, it is useful to use the life reloading feature from MkDocs:
+While working on the documentation, it is useful to use the live reloading feature from MkDocs:
 ```bash
 mkdocs serve
 ```
