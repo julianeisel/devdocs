@@ -35,7 +35,6 @@ theme:
         icon: material/brightness-3
         name: Switch to light mode
 
-
 nav:
   - 'Home': 'index.md'
   - 'Developer Handbook':
@@ -89,8 +88,7 @@ nav:
       - 'asset_system/fundamentals/architectural_overview.md'
       - 'asset_system/fundamentals/from_file_browser_to_asset_system.md'
     - 'Backend':
-      - 'asset_system/backend/index.md'
-      - 'asset_system/backend/asset_catalogs.md'
+      - 'Asset Catalogs': 'asset_system/backend/asset_catalogs.md'
       - 'asset_system/backend/asset_list_api.md'
       - 'asset_system/backend/asset_index.md'
     - 'User Interface':
