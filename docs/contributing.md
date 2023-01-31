@@ -4,6 +4,9 @@ This documentation is built using [Material for MkDocs](https://squidfunk.github
 
 ## Building this Documentation
 
+> INFO:
+> The documentation uses the paid [Material for MkDocs Insiders](https://squidfunk.github.io/mkdocs-material/insiders/) tier now. However the documentation should be usable without this still. It is only used for the grid cards on the home page.
+
 ### 1. Get the Sources
 
 In a directory of your choice (assumes `git` is installed):
