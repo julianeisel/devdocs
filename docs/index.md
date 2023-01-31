@@ -16,7 +16,7 @@ If you want to understand how Blender looks like inside (and maybe do a change o
 <div class="grid cards" markdown>
 -   :material-book-education:{ .lg .middle } [__Blender Developer Handbook__](developer_handbook/index.md)
 
-    Guide through all the basic information needed so you can start developing Blender. Includes build instructions, guidelines, tools and basic architectural information.
+    Important general information for beginners and experienced coders alike. If you are new to Blender development, this is the place to start your journey. Includes build instructions, guidelines, tools and basic architectural information.
 </div>
 
 ## Dive Deeper
