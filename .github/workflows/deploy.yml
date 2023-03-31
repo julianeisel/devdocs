@@ -17,7 +17,7 @@ jobs:
         with:
           key: ${{ github.ref }}
           path: .cache
-      - run: pip install markdown-callouts mkdocs-section-index pygments pymdown-extensions mkdocs-glightbox mkdocs-git-revision-date-localized-plugin
+      - run: pip install markdown-callouts materialx mkdocs-section-index pygments pymdown-extensions mkdocs-glightbox mkdocs-git-revision-date-localized-plugin
       - run: mkdocs gh-deploy --force
 
 env:
