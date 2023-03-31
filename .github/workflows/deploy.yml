@@ -1,0 +1,24 @@
+name: Deployment (Non-Insiders)
+on:
+  push:
+    branches:
+      - main
+permissions:
+  contents: write
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+      - uses: actions/cache@v2
+        with:
+          key: ${{ github.ref }}
+          path: .cache
+      - run: pip install markdown-callouts mkdocs-section-index pygments pymdown-extensions mkdocs-glightbox mkdocs-git-revision-date-localized-plugin
+      - run: mkdocs gh-deploy --force
+
+env:
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
