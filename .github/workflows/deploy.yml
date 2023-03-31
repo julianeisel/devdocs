@@ -19,6 +19,3 @@ jobs:
           path: .cache
       - run: pip install markdown-callouts materialx mkdocs-section-index pygments pymdown-extensions mkdocs-glightbox mkdocs-git-revision-date-localized-plugin
       - run: mkdocs gh-deploy --force
-
-env:
-  GH_TOKEN: ${{ secrets.GH_TOKEN }}
