@@ -1,3 +1,7 @@
 .cache/
 # The default documentation build output directory
 site/
+# Python virtual environment
+.venv/
+# VSCode workspace files
+*.code-workspace
