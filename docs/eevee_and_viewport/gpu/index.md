@@ -295,7 +295,7 @@ the vertex and fragment stage and link the stages into a program that can be use
 the GPU. It also generates a GPUShaderInterface that handles lookup to input parameters
 (attributes, uniforms, uniform buffers, textures and shader storage buffer objects).
 
-### Geometry
+## Geometry
 
 Geometry is defined by a `GPUPrimType`, one index buffer (IBO) and one or more vertex
 buffers (VBOs). The GPUPrimType defines how the index buffer should be interpreted.
@@ -343,7 +343,7 @@ for (int i = 0; i < 12; i ++) {
 }
 ```
 
-### Batch
+## Batch
 
 Use GPUBatches to draw geometry. A GPUBatch combines the geometry with a shader
 and its parameters and has functions to perform a draw call. To perform a draw
@@ -359,7 +359,7 @@ This will draw on the geometry on the active frame buffer using the shader and t
 
 > NOTE: GPUTextures can be used as render target or as input of a shader, but not inside the same drawing call.
 
-### Immediate mode and built in shaders
+## Immediate mode and built in shaders
 
 To ease development for drawing panels/UI buttons the GPU module provides an
 immediate mode. This is a wrapper on top of what is explained above, but in a
