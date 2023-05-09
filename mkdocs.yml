@@ -107,8 +107,8 @@ nav:
     - 'rendering/index.md'
   # - 'Nodes & Physics':
   #   - 'nodes_and_physics/index.md'
-  # - 'Eevee & Viewport':
-  #   - 'eevee_and_viewport/index.md'
+  - 'Eevee & Viewport':
+    - 'eevee_and_viewport/index.md'
   # - 'Sculpt & Paint':
   #   - 'sculpt_and_paint/index.md'
   # - 'Modeling':
