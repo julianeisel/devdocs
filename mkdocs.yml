@@ -115,7 +115,11 @@ nav:
   #   - 'modeling/index.md'
   # - 'Platforms, Builds, Tests & Devices':
   #   - 'platforms_builds_tests_and_devices/index.md'
-  - 'contributing.md'
+  - 'Contributing':
+    - 'contributing/index.md'
+    - 'contributing/building.md'
+    - 'contributing/editing.md'
+    - 'contributing/license.md'
 
 markdown_extensions:
   - toc:
