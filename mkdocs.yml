@@ -109,6 +109,21 @@ nav:
   #   - 'nodes_and_physics/index.md'
   - 'Eevee & Viewport':
     - 'eevee_and_viewport/index.md'
+    - 'eevee_and_viewport/gpu/index.md'
+    - 'Vulkan Backend':
+      - 'eevee_and_viewport/gpu/vulkan/index.md'
+      - 'eevee_and_viewport/gpu/vulkan/buffers.md'
+      - 'eevee_and_viewport/gpu/vulkan/command_buffer.md'
+      - 'eevee_and_viewport/gpu/vulkan/descriptor_sets.md'
+      - 'eevee_and_viewport/gpu/vulkan/images.md'
+      - 'eevee_and_viewport/gpu/vulkan/pipelines.md'
+      - 'eevee_and_viewport/gpu/vulkan/push_constants.md'
+      - 'eevee_and_viewport/gpu/vulkan/shaders.md'
+      - 'eevee_and_viewport/gpu/vulkan/vk_frame_buffer.md'
+      - 'eevee_and_viewport/gpu/vulkan/vk_vertex_buffer.md'
+    - 'Tools':
+      - 'RenderDoc': 'eevee_and_viewport/gpu/renderdoc.md'
+      - 'eevee_and_viewport/gpu/shader_builder.md'
   # - 'Sculpt & Paint':
   #   - 'sculpt_and_paint/index.md'
   # - 'Modeling':
