@@ -10,10 +10,7 @@ When adding a page, make sure to register it in the `nav` section of `mkdocs.yml
 
 ## Adding/Enabling Extensions & Plugins
 
-Extensions and plugins are controlled via the `mkdocs.yml` file. If additional Python modules are necessary for one, they must be added to the following places:
-
-- In the `pip install` command of the [build instructions](building.md#2-install-prerequisites).
-- The GitHub Actions workflow configurations in `.github/workflow/deploy.yml` and `deploy_insiders.yml`, to deploy the generated documentation HTML.
+Extensions and plugins are controlled via the `mkdocs.yml` file. If additional Python modules are necessary for one, they must be added to the `requirements.txt` file.
 
 ## Configuring (Settings, Extensions, Plugins, etc.)
 

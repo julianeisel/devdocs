@@ -13,12 +13,12 @@ $ git clone https://github.com/julianeisel/devdocs.git
 $ cd devdocs
 ```
 
-## 2. Install Prerequisites
+## 2. Install Dependencies
 
 Install Material for MkDocs and all the necessary extensions/plugins:
 
 ```bash
-python -m pip install mkdocs-material markdown-callouts mkdocs-section-index pygments pymdown-extensions mkdocs-glightbox mkdocs-git-revision-date-localized-plugin
+sudo python -m pip install -r requirements.txt
 ```
 You may have to use `python3` instead of `python`.
 
