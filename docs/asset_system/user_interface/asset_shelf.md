@@ -89,7 +89,19 @@ The asset catalog selector uses a [tree-view](https://wiki.blender.org/wiki/Sour
 
 ## Storage
 
-Asset shelves store their data mostly through three structs:
+``` mermaid
+classDiagram
+  direction LR
+  View3D --> "1" AssetShelfHook
+  AssetShelfHook --> "*" AssetShelf
+  AssetShelf --* AssetShelfSettings: Contains
+  AssetShelf --* AssetShelfType: Contains
+```
+
+Asset shelves store their data mostly through the following structs:
+
+**`AssetShelfHook`**
+: Container for spaces to embed all permanent asset shelf data. This contains a list of `AssetShelf` instances (the storage of previously active asset shelves) and information on the active shelf. Availability of the active shelf is queried on redraws, so the active shelf may change on context changes.
 
 **`AssetShelf`**
 : Data of a single shelf, created by activating a shelf of a given `AssetShelfType`. Holds type information and settings, whereby settings are stored in a nested `AssetShelfSettings` member.
@@ -98,10 +110,11 @@ Asset shelves store their data mostly through three structs:
 : The settings for an `AssetShelf` instance such as the enabled asset catalogs and other display options.
 : See `asset_shelf_settings.cc`.
 
-**`AssetShelfHook`**
-: Container for all permanent asset shelf data. This contains a list of `AssetShelf` instances (as in, the storage of previously active asset shelves) as well as a pointer to the active asset shelf. On redraws, the active shelf is queried for availability in the current context, and the pointer updated if necessary.
+**`AssetShelfType`**
+: Runtime type information like the identifier and callbacks of the asset shelf.
 
-These structs are part of SDNA so they can be written to .blend files.
+
+Except of the runtime-only `AssetShelfType`, these structs are part of SDNA so they can be written to .blend files.
 
 ## Adding Asset Shelf Support to an Editor
 
