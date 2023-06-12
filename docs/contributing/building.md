@@ -30,7 +30,7 @@ While working on the documentation, it is useful to use the live reloading featu
 ```bash
 mkdocs serve
 ```
-This will print a URL under which you will find the latest build of your documentation that is updated continuously while your working on it.
+This will print a URL under which you will find the latest build of your documentation that is updated continuously while working on it.
 
 #### Option 2: Build only
 
