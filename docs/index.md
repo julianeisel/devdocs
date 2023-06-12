@@ -45,7 +45,7 @@ If you want to understand how Blender looks like inside (and maybe do a change o
 ---
 
 <div class="grid cards" markdown>
--   :material-comment-edit: [__Contribute to this Documentation__](contributing.md)
+-   :material-comment-edit: [__Contribute to this Documentation__](contributing/index.md)
 
     You want to help improve the Blender developer documentation? Great! Here you find information on how to build the documentation, change it and get the changes online.
 
