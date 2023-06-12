@@ -1,0 +1,2797 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="vulkan/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.15">
+    
+    
+      
+        <title>GPU Module - Blender Developer Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.26e3688c.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ecc896b0.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/timeago.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+        html.glightbox-open { overflow: initial; height: 100%; }
+        .gslide-title { margin-top: 0px; user-select: text; }
+        .gslide-desc { color: #666; user-select: text; }
+        .gslide-image img { background: white; }
+        
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
+            </style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="deep-orange">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#gpu-module" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Blender Developer Documentation" class="md-header__button md-logo" aria-label="Blender Developer Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.58 3.12v.01c-.31 0-.62.09-.87.26-.5.35-.56.93-.11 1.3L14.46 7l-8.73.03h-.01C5 7.03 4.3 7.5 4.16 8.1c-.16.61.34 1.12 1.1 1.12l4.43-.01-7.93 6.09c-.76.57-.99 1.52-.52 2.12.48.61 1.49.61 2.26 0l4.3-3.53s-.07.48-.06.76c0 .29.1.85.23 1.28.29.93.78 1.78 1.46 2.53.7.77 1.57 1.39 2.57 1.83 1.03.47 2.17.71 3.34.71 1.16 0 2.31-.25 3.35-.72 1-.44 1.86-1.07 2.56-1.84.68-.75 1.17-1.61 1.46-2.53.14-.47.23-.94.29-1.41 0-.47 0-.94-.06-1.41-.13-.91-.44-1.77-.94-2.55-.44-.71-1-1.34-1.69-1.87l-6.89-5.29a1.42 1.42 0 0 0-.84-.26m2.76 6.09c1.16 0 2.25.38 3.12 1.08.44.36.79.78 1.04 1.25.27.46.44 1.01.5 1.57.04.56-.04 1.12-.23 1.66-.2.54-.52 1.04-.95 1.49-.89.9-2.13 1.42-3.48 1.42-1.34 0-2.59-.51-3.48-1.41-.43-.44-.75-.95-.95-1.49a3.89 3.89 0 0 1-.22-1.66c.05-.56.22-1.09.48-1.57.26-.47.62-.89 1.06-1.25.86-.71 1.96-1.09 3.11-1.09m.1 1.4c-.78 0-1.5.28-2.03.73-.54.46-.91 1.1-.94 1.84-.04.75.26 1.45.79 1.97.54.53 1.32.85 2.18.85.86 0 1.63-.32 2.18-.85.53-.52.83-1.22.79-1.97-.04-.74-.41-1.38-.94-1.84-.53-.45-1.25-.73-2.03-.73Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Blender Developer Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              GPU Module
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+            
+              <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+              </label>
+            
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+            
+              <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 2c-1.05 0-2.05.16-3 .46 4.06 1.27 7 5.04 7 9.54 0 4.5-2.94 8.27-7 9.54.95.3 1.95.46 3 .46a10 10 0 0 0 10-10A10 10 0 0 0 9 2Z"/></svg>
+              </label>
+            
+          
+        </form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/julianeisel/devdocs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../developer_handbook/" class="md-tabs__link">
+      Developer Handbook
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../core_data_management/" class="md-tabs__link">
+      Core Data Management
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../asset_system/" class="md-tabs__link">
+        Asset System
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../animation/" class="md-tabs__link">
+      Animation
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../user_interface_core/" class="md-tabs__link">
+      User Interface
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../rendering/index.md" class="md-tabs__link">
+        Rendering
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../" class="md-tabs__link md-tabs__link--active">
+      Eevee & Viewport
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../contributing/" class="md-tabs__link">
+      Contribute Documentation
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Blender Developer Documentation" class="md-nav__button md-logo" aria-label="Blender Developer Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.58 3.12v.01c-.31 0-.62.09-.87.26-.5.35-.56.93-.11 1.3L14.46 7l-8.73.03h-.01C5 7.03 4.3 7.5 4.16 8.1c-.16.61.34 1.12 1.1 1.12l4.43-.01-7.93 6.09c-.76.57-.99 1.52-.52 2.12.48.61 1.49.61 2.26 0l4.3-3.53s-.07.48-.06.76c0 .29.1.85.23 1.28.29.93.78 1.78 1.46 2.53.7.77 1.57 1.39 2.57 1.83 1.03.47 2.17.71 3.34.71 1.16 0 2.31-.25 3.35-.72 1-.44 1.86-1.07 2.56-1.84.68-.75 1.17-1.61 1.46-2.53.14-.47.23-.94.29-1.41 0-.47 0-.94-.06-1.41-.13-.91-.44-1.77-.94-2.55-.44-.71-1-1.34-1.69-1.87l-6.89-5.29a1.42 1.42 0 0 0-.84-.26m2.76 6.09c1.16 0 2.25.38 3.12 1.08.44.36.79.78 1.04 1.25.27.46.44 1.01.5 1.57.04.56-.04 1.12-.23 1.66-.2.54-.52 1.04-.95 1.49-.89.9-2.13 1.42-3.48 1.42-1.34 0-2.59-.51-3.48-1.41-.43-.44-.75-.95-.95-1.49a3.89 3.89 0 0 1-.22-1.66c.05-.56.22-1.09.48-1.57.26-.47.62-.89 1.06-1.25.86-.71 1.96-1.09 3.11-1.09m.1 1.4c-.78 0-1.5.28-2.03.73-.54.46-.91 1.1-.94 1.84-.04.75.26 1.45.79 1.97.54.53 1.32.85 2.18.85.86 0 1.63-.32 2.18-.85.53-.52.83-1.22.79-1.97-.04-.74-.41-1.38-.94-1.84-.53-.45-1.25-.73-2.03-.73Z"/></svg>
+
+    </a>
+    Blender Developer Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/julianeisel/devdocs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../developer_handbook/">Developer Handbook</a>
+          
+            <label for="__nav_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Developer Handbook
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+      
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../developer_handbook/new_developer_introduction/">New Developer Introduction</a>
+          
+            <label for="__nav_2_1">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          New Developer Introduction
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer_handbook/new_developer_introduction/advice/" class="md-nav__link">
+        Advice
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer_handbook/new_developer_introduction/choosing_a_first_task.md" class="md-nav__link">
+        Choosing a First Task
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+      
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../developer_handbook/building_blender/">Building Blender</a>
+          
+            <label for="__nav_2_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Building Blender
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer_handbook/building_blender/linux.md" class="md-nav__link">
+        Linux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer_handbook/building_blender/windows.md" class="md-nav__link">
+        Windows
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer_handbook/building_blender/macOS.md" class="md-nav__link">
+        macOS
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+      
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../developer_handbook/process/">Process</a>
+          
+            <label for="__nav_2_3">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Process
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer_handbook/process/release_cycle.md" class="md-nav__link">
+        Release Cycle
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer_handbook/process/contributing.md" class="md-nav__link">
+        Contributing (Review & Commit)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer_handbook/modules/" class="md-nav__link">
+        Modules
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+      
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../developer_handbook/guidelines/">Guidelines</a>
+          
+            <label for="__nav_2_5">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_5">
+          <span class="md-nav__icon md-icon"></span>
+          Guidelines
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer_handbook/guidelines/c_cpp_code_style.md" class="md-nav__link">
+        C/C++ Code Style
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer_handbook/guidelines/python_code_style.md" class="md-nav__link">
+        Python Code Style
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer_handbook/guidelines/commit_messages.md" class="md-nav__link">
+        Commit Messages
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer_handbook/guidelines/commit_messages.md" class="md-nav__link">
+        Release Notes
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
+      
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../developer_handbook/testing/">Testing</a>
+          
+            <label for="__nav_2_6">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_6">
+          <span class="md-nav__icon md-icon"></span>
+          Testing
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer_handbook/testing/c_cpp_tests.md" class="md-nav__link">
+        C/C++
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer_handbook/testing/python_tests.md" class="md-nav__link">
+        Python
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
+      
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../developer_handbook/tools/">Tools</a>
+          
+            <label for="__nav_2_7">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_7">
+          <span class="md-nav__icon md-icon"></span>
+          Tools
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer_handbook/tools/address_sanitizer.md" class="md-nav__link">
+        Address Sanitizer
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../core_data_management/">Core Data Management</a>
+          
+            <label for="__nav_3">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Core Data Management
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+      
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../core_data_management/datablocks_and_main_database/">Datablocks and Main Database</a>
+          
+            <label for="__nav_3_1">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Datablocks and Main Database
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core_data_management/datablocks_and_main_database/dummy_page/" class="md-nav__link">
+        Dummy page
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+      
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../core_data_management/blend_file_read_write/">Blend-File Read/Write</a>
+          
+            <label for="__nav_3_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Blend-File Read/Write
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core_data_management/blend_file_read_write/dummy_page/" class="md-nav__link">
+        Dummy page
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+      
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../core_data_management/undo_redo/">Undo/Redo</a>
+          
+            <label for="__nav_3_3">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          Undo/Redo
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core_data_management/undo_redo/dummy_page/" class="md-nav__link">
+        Dummy page
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+          DNA
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_4">
+          <span class="md-nav__icon md-icon"></span>
+          DNA
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core_data_management/dna/index.md" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+          RNA
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_5">
+          <span class="md-nav__icon md-icon"></span>
+          RNA
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core_data_management/rna/index.md" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          Asset System
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Asset System
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../asset_system/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+          Fundamentals
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Fundamentals
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../asset_system/fundamentals/" class="md-nav__link">
+        Important Concepts
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../asset_system/fundamentals/architectural_overview/" class="md-nav__link">
+        Architectural Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../asset_system/fundamentals/from_file_browser_to_asset_system/" class="md-nav__link">
+        From File Browser to Asset System
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+          Backend
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          Backend
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../asset_system/backend/asset_catalogs/" class="md-nav__link">
+        Asset Catalogs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../asset_system/backend/asset_list_api/" class="md-nav__link">
+        Asset List API
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../asset_system/backend/asset_index/" class="md-nav__link">
+        Asset Indexing
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+      
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../asset_system/user_interface/">User Interface</a>
+          
+            <label for="__nav_4_4">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4_4">
+          <span class="md-nav__icon md-icon"></span>
+          User Interface
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../asset_system/user_interface/asset_browser/" class="md-nav__link">
+        Asset Browser
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../asset_system/user_interface/asset_shelf/" class="md-nav__link">
+        Asset Shelf
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+           
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4_5">
+          <span class="md-nav__icon md-icon"></span>
+           
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../asset_system/FAQ/" class="md-nav__link">
+        FAQ
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../animation/" class="md-nav__link">
+        Animation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+      
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../user_interface_core/">User Interface</a>
+          
+            <label for="__nav_6">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          User Interface
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Window Manager" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          Rendering
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          Rendering
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rendering/index.md" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+      
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../">Eevee & Viewport</a>
+          
+            <label for="__nav_8">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          Eevee & Viewport
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          GPU Module
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        GPU Module
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#drawing-pipeline" class="md-nav__link">
+    Drawing pipeline
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#textures" class="md-nav__link">
+    Textures
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frame-buffer" class="md-nav__link">
+    Frame buffer
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shader-create-info" class="md-nav__link">
+    Shader Create Info
+  </a>
+  
+    <nav class="md-nav" aria-label="Shader Create Info">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gpushadercreateinfo" class="md-nav__link">
+    GPUShaderCreateInfo
+  </a>
+  
+    <nav class="md-nav" aria-label="GPUShaderCreateInfo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#defining-a-new-compile-unit" class="md-nav__link">
+    Defining a new compile unit
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interface-info" class="md-nav__link">
+    Interface Info
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shader-info" class="md-nav__link">
+    Shader Info
+  </a>
+  
+    <nav class="md-nav" aria-label="Shader Info">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shader-source-order" class="md-nav__link">
+    Shader Source Order
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#buffer-structures" class="md-nav__link">
+    Buffer Structures
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geometry-shaders" class="md-nav__link">
+    Geometry shaders
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compute-shaders" class="md-nav__link">
+    Compute shaders
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-c-code-sharing" class="md-nav__link">
+    C &amp; C++ Code sharing
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shader" class="md-nav__link">
+    Shader
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#geometry" class="md-nav__link">
+    Geometry
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#batch" class="md-nav__link">
+    Batch
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#immediate-mode-and-built-in-shaders" class="md-nav__link">
+    Immediate mode and built in shaders
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tools" class="md-nav__link">
+    Tools
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_2" >
+      
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="vulkan/">Vulkan Backend</a>
+          
+            <label for="__nav_8_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_8_2">
+          <span class="md-nav__icon md-icon"></span>
+          Vulkan Backend
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vulkan/buffers/" class="md-nav__link">
+        Buffers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vulkan/command_buffer/" class="md-nav__link">
+        Command buffer
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vulkan/descriptor_sets/" class="md-nav__link">
+        Descriptor sets
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vulkan/images/" class="md-nav__link">
+        Images
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vulkan/pipelines/" class="md-nav__link">
+        VKPipeline
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vulkan/push_constants/" class="md-nav__link">
+        Push constants
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vulkan/shaders/" class="md-nav__link">
+        Shaders
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vulkan/vk_frame_buffer/" class="md-nav__link">
+        VKFrameBuffer
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vulkan/vk_vertex_buffer/" class="md-nav__link">
+        Vertex Buffer
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8_3" id="__nav_8_3_label" tabindex="0">
+          Tools
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_8_3">
+          <span class="md-nav__icon md-icon"></span>
+          Tools
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="renderdoc/" class="md-nav__link">
+        RenderDoc
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="shader_builder/" class="md-nav__link">
+        ShaderBuilder
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+      
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../contributing/">Contribute Documentation</a>
+          
+            <label for="__nav_9">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          Contribute Documentation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contributing/building/" class="md-nav__link">
+        Building this Documentation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contributing/editing/" class="md-nav__link">
+        Editing
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contributing/license/" class="md-nav__link">
+        License
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#drawing-pipeline" class="md-nav__link">
+    Drawing pipeline
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#textures" class="md-nav__link">
+    Textures
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frame-buffer" class="md-nav__link">
+    Frame buffer
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shader-create-info" class="md-nav__link">
+    Shader Create Info
+  </a>
+  
+    <nav class="md-nav" aria-label="Shader Create Info">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gpushadercreateinfo" class="md-nav__link">
+    GPUShaderCreateInfo
+  </a>
+  
+    <nav class="md-nav" aria-label="GPUShaderCreateInfo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#defining-a-new-compile-unit" class="md-nav__link">
+    Defining a new compile unit
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interface-info" class="md-nav__link">
+    Interface Info
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shader-info" class="md-nav__link">
+    Shader Info
+  </a>
+  
+    <nav class="md-nav" aria-label="Shader Info">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shader-source-order" class="md-nav__link">
+    Shader Source Order
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#buffer-structures" class="md-nav__link">
+    Buffer Structures
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geometry-shaders" class="md-nav__link">
+    Geometry shaders
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compute-shaders" class="md-nav__link">
+    Compute shaders
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-c-code-sharing" class="md-nav__link">
+    C &amp; C++ Code sharing
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shader" class="md-nav__link">
+    Shader
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#geometry" class="md-nav__link">
+    Geometry
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#batch" class="md-nav__link">
+    Batch
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#immediate-mode-and-built-in-shaders" class="md-nav__link">
+    Immediate mode and built in shaders
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tools" class="md-nav__link">
+    Tools
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/julianeisel/devdocs/edit/main/docs/eevee_and_viewport/gpu/index.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/julianeisel/devdocs/raw/main/docs/eevee_and_viewport/gpu/index.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+<h1 id="gpu-module">GPU Module<a class="headerlink" href="#gpu-module" title="Permanent link">&para;</a></h1>
+<p>The GPU module is an abstraction layer between Blender and an Operating System
+Graphics Library layer (GL). These GLs are abstracted away in GPUBackends. There
+is a GLBackend that provides support to OpenGL 3.3 on Windows, Mac and Linux.
+There is also a Metal backend for Apple devices. Vulkan backend is currently
+in development.</p>
+<p>GPU module can be used to draw geometry or perform computational tasks using a
+GPU. This overview is targeted to developers who want to have a quick start how
+they can use the GPU module to draw or compute. Basic knowledge of an GL (OpenGL
+core profile 3.3 or similar) is required as we use similar concepts.</p>
+<h2 id="drawing-pipeline">Drawing pipeline<a class="headerlink" href="#drawing-pipeline" title="Permanent link">&para;</a></h2>
+<p>This section gives an overview of the drawing pipeline of the GPU module.</p>
+<pre class="mermaid"><code>classDiagram
+direction LR
+
+class GPUBatch
+class GPUShader {
+    -GLSL vertex_code
+    -GLSL fragment_code
+}
+class GPUFramebuffer
+class GPUVertBuf
+class GPUIndexBuffer
+class GPUPrimType {
+    &lt;&lt;Enumeration&gt;&gt;
+    GPU_PRIM_POINTS,
+    GPU_PRIM_LINES,
+    GPU_PRIM_TRIS,
+    ...
+}
+class GPUShaderInterface
+class GPUTexture
+
+GPUBatch o--&gt; GPUIndexBuffer
+GPUBatch o--&gt; GPUVertBuf
+GPUBatch *--&gt; GPUPrimType
+GPUBatch o..&gt; GPUShader: draws using
+GPUShader o..&gt; GPUFramebuffer: onto
+GPUShader *--&gt; GPUShaderInterface
+GPUFramebuffer o--&gt; GPUTexture
+
+</code></pre>
+<h2 id="textures">Textures<a class="headerlink" href="#textures" title="Permanent link">&para;</a></h2>
+<p>Textures are used to hold pixel data. Textures can be 1, 2 or 3 dimensional,
+cubemap and an array of 2d textures/cubemaps. The internal storage of a texture
+(how the pixels are stored in memory on the GPU) can be set when creating a
+texture.</p>
+<div class="highlight"><span class="filename">Create a texture</span><pre><span></span><code><span class="cm">/* Create an empty texture with HD resolution where pixels are stored as half floats. */</span>
+<span class="n">GPUTexture</span><span class="w"> </span><span class="o">*</span><span class="n">texture</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GPU_texture_create_2d</span><span class="p">(</span><span class="s">&quot;MyTexture&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1920</span><span class="p">,</span><span class="w"> </span><span class="mi">1080</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">GPU_RGBA16F</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+</code></pre></div>
+<h2 id="frame-buffer">Frame buffer<a class="headerlink" href="#frame-buffer" title="Permanent link">&para;</a></h2>
+<p>A frame buffer is a group of textures you can render onto. These textures are
+arranged in a fixed set of slots. The first slot is reserved for a depth/stencil
+buffer. The other slots can be filled with regular textures, cube maps, or layer
+textures.</p>
+<p>GPU_framebuffer_ensure_config is used to create/update the configuration of a
+framebuffer.</p>
+<div class="highlight"><span class="filename">Create a framebuffer</span><pre><span></span><code><span class="n">GPUFramebuffer</span><span class="w"> </span><span class="o">*</span><span class="n">fb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="n">GPU_framebuffer_ensure_config</span><span class="p">(</span><span class="o">&amp;</span><span class="n">fb</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">GPU_ATTACHMENT_NONE</span><span class="p">,</span><span class="w"> </span><span class="c1">// Slot reserved for depth/stencil buffer.</span>
+<span class="w">  </span><span class="n">GPU_ATTACHMENT_TEXTURE</span><span class="p">(</span><span class="n">texture</span><span class="p">),</span>
+<span class="p">})</span>
+</code></pre></div>
+<h2 id="shader-create-info">Shader Create Info<a class="headerlink" href="#shader-create-info" title="Permanent link">&para;</a></h2>
+<p>The GPU module supports multiple GL backends. The challenge of multiple GL
+backends is that GLSL is different on all those platforms. It isn't possible
+to compile an OpenGL GLSL on Vulkan as the GLSL differs. The big differences
+between the GLSL's are how they define and locate resources.</p>
+<p>This section of the documentation will handle how to create GLSL that can
+safely be cross compiled to different backends.</p>
+<h3 id="gpushadercreateinfo">GPUShaderCreateInfo<a class="headerlink" href="#gpushadercreateinfo" title="Permanent link">&para;</a></h3>
+<h4 id="defining-a-new-compile-unit">Defining a new compile unit<a class="headerlink" href="#defining-a-new-compile-unit" title="Permanent link">&para;</a></h4>
+<p>When creating a new compile unit to contain a GPUShaderCreateInfo definition
+it needs to be added to the <code>SHADER_CREATE_INFOS</code> in <code>gpu/CMakeLists.txt</code> this
+will automatically register the definition in a registry.</p>
+<p>Each of the compile unit should include <code>gpu_shader_create_info.h</code>.</p>
+<h4 id="interface-info">Interface Info<a class="headerlink" href="#interface-info" title="Permanent link">&para;</a></h4>
+<p>Interfaces are data that are passed between shader stages (Vertex =&gt; Fragment stage).
+Attributes can be <code>flat</code>, <code>smooth</code> or <code>no_perspective</code> describing the interpolation
+mode between.</p>
+<div class="highlight"><span class="filename">Example interface info</span><pre><span></span><code><span class="n">GPU_SHADER_INTERFACE_INFO</span><span class="p">(</span><span class="n">text_iface</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">flat</span><span class="p">(</span><span class="n">Type</span><span class="o">::</span><span class="n">VEC4</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;color_flat&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">no_perspective</span><span class="p">(</span><span class="n">Type</span><span class="o">::</span><span class="n">VEC2</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;texCoord_interp&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">flat</span><span class="p">(</span><span class="n">Type</span><span class="o">::</span><span class="n">INT</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;glyph_offset&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">flat</span><span class="p">(</span><span class="n">Type</span><span class="o">::</span><span class="n">IVEC2</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;glyph_dim&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">flat</span><span class="p">(</span><span class="n">Type</span><span class="o">::</span><span class="n">INT</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;interp_size&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="shader-info">Shader Info<a class="headerlink" href="#shader-info" title="Permanent link">&para;</a></h4>
+<p>Shader Info describes</p>
+<ul>
+<li>Where to find required data (vertex_in, push constant).</li>
+<li>Textures/samplers to use (sampler)</li>
+<li>Where to store the final data (fragment_out)</li>
+<li>It describes the data format between the shader stages (vertex_out).</li>
+<li>The source code of each stage (vertex_source, fragment_source)</li>
+</ul>
+<p>Shader infos can reuse other infos to reduce code duplication (<code>additional_info</code> would
+load the data from the given shader info into the new shader info.</p>
+<p>The active GPU backend will adapt the GLSL source to generate those part of the code.</p>
+<div class="highlight"><span class="filename">Example Shader Info</span><pre><span></span><code><span class="n">GPU_SHADER_CREATE_INFO</span><span class="p">(</span><span class="n">gpu_shader_text</span><span class="p">)</span>
+<span class="w">    </span><span class="c1">// vertex_in define vertex buffer inputs. They will be passed to the vertex stage.</span>
+<span class="w">    </span><span class="p">.</span><span class="n">vertex_in</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">Type</span><span class="o">::</span><span class="n">VEC4</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;pos&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">vertex_in</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">Type</span><span class="o">::</span><span class="n">VEC4</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;col&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">vertex_in</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">Type</span><span class="o">::</span><span class="n">IVEC2</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;glyph_size&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">vertex_in</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">Type</span><span class="o">::</span><span class="n">INT</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;offset&quot;</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1">// vertex_out define the structure of the output of the vertex stage.</span>
+<span class="w">    </span><span class="c1">// This would be the input of the fragment stage or geometry stage.</span>
+<span class="w">    </span><span class="p">.</span><span class="n">vertex_out</span><span class="p">(</span><span class="n">text_iface</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1">// definition of the output of the fragment stage.</span>
+<span class="w">    </span><span class="p">.</span><span class="n">fragment_out</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">Type</span><span class="o">::</span><span class="n">VEC4</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;fragColor&quot;</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1">// Flat uniforms aren&#39;t supported anymore and should be added as push constants.</span>
+<span class="w">    </span><span class="c1">// Note that push constants are limited to 128 bytes. Use uniform buffers</span>
+<span class="w">    </span><span class="c1">// when more space is required.</span>
+<span class="w">    </span><span class="c1">// Internal Matrices are automatically bound to push constants when they exists.</span>
+<span class="w">    </span><span class="c1">// Matrices inside a uniform buffer is the responsibility of the developer.</span>
+<span class="w">    </span><span class="p">.</span><span class="n">push_constant</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">Type</span><span class="o">::</span><span class="n">MAT4</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ModelViewProjectionMatrix&quot;</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1">// Define a sampler location.</span>
+<span class="w">    </span><span class="p">.</span><span class="n">sampler</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">ImageType</span><span class="o">::</span><span class="n">FLOAT_2D</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;glyph&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Frequency</span><span class="o">::</span><span class="n">PASS</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1">// Specify the vertex and fragment shader source.</span>
+<span class="w">    </span><span class="c1">// dependencies can be automatically included by using `#pragma BLENDER_REQUIRE`</span>
+<span class="w">    </span><span class="p">.</span><span class="n">vertex_source</span><span class="p">(</span><span class="s">&quot;gpu_shader_text_vert.glsl&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">fragment_source</span><span class="p">(</span><span class="s">&quot;gpu_shader_text_frag.glsl&quot;</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1">// Add all info of the GPUShaderCreateInfo with the given name.</span>
+<span class="w">    </span><span class="c1">// Provides limited form of inheritance.</span>
+<span class="w">    </span><span class="p">.</span><span class="n">additional_info</span><span class="p">(</span><span class="s">&quot;gpu_srgb_to_framebuffer_space&quot;</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1">// Create info is marked to be should be compilable.</span>
+<span class="w">    </span><span class="c1">// By default a create info is not compilable.</span>
+<span class="w">    </span><span class="c1">// Compilable shaders are compiled when using shader builder.</span>
+<span class="w">    </span><span class="p">.</span><span class="n">do_static_compilation</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+</code></pre></div>
+<h5 id="shader-source-order">Shader Source Order<a class="headerlink" href="#shader-source-order" title="Permanent link">&para;</a></h5>
+<p>Shader source order does not follow the order of the methods call made to the
+create info. Instead it follows this fixed order:</p>
+<ul>
+<li>Standard Defines: GPU module defines (<code>GPU_SHADER</code>, <code>GPU_VERTEX_SHADER</code>, OS, GPU vendor, and extensions) and MSL glue.</li>
+<li>Create Info Defines: <code>.define</code>.</li>
+<li>Typedef Sources: <code>.typedef_source</code>.</li>
+<li>Resources Declarations: <code>.sampler</code>, <code>.image</code>, <code>.uniform_buf</code> and <code>.storage_buf</code>.</li>
+<li>Layout Declarations: <code>.geometry_layout</code>, <code>.local_group_size</code>.</li>
+<li>Interface Declarations: <code>.vertex_in</code>, <code>.vertex_out</code>, <code>.fragment_out</code>, <code>.fragment_out</code>.</li>
+<li>Main Dependencies: All files inside <code>#pragma BLENDER_REQUIRE</code> directives.</li>
+<li>Main: Shader stage source file <code>.vertex_source</code>, <code>.fragment_source</code>, <code>.geometry_source</code> or <code>.compute_source</code>.</li>
+<li>NodeTree Dependencies: All files needed by the nodetree functions. Only for shaders from Blender Materials.</li>
+<li>NodeTree: Definition of the nodetree functions (ex: <code>nodetree_surface()</code>). Only for shaders from Blender Materials.</li>
+</ul>
+<h4 id="buffer-structures">Buffer Structures<a class="headerlink" href="#buffer-structures" title="Permanent link">&para;</a></h4>
+<p>Previously structs that were used on CPU/GPU would be written twice. Once using
+the CPU data types and once that uses the GPU data types. Developers were
+responsible to keep those structures consistent.</p>
+<p>Shared structs can be defined in 'shader_shared' header files. For example the
+<code>GPU_shader_shared.h</code>. These headers can be included in C and CPP compile units.</p>
+<div class="highlight"><pre><span></span><code><span class="cm">/* In GPU_shader_shared.h */</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">MyStruct</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">float4x4</span><span class="w"> </span><span class="n">modelMatrix</span><span class="p">;</span>
+<span class="w">  </span><span class="n">float4</span><span class="w"> </span><span class="n">colors</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+<span class="w">  </span><span class="n">bool1</span><span class="w"> </span><span class="n">do_fill</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">dim_factor</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">thickness</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">_pad</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="n">BLI_STATIC_ASSERT_ALIGN</span><span class="p">(</span><span class="n">MyStruct</span><span class="p">,</span><span class="w"> </span><span class="mi">16</span><span class="p">)</span>
+</code></pre></div>
+<p>Developer is still responsible to layout the struct (alignment and padding) so
+it can be used on the GPU.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See [[Style_Guide/GLSL#Shared_Shader_Files|these rules]] about correctly
+packing members.</p>
+</div>
+<div class="highlight"><pre><span></span><code><span class="n">GPU_SHADER_CREATE_INFO</span><span class="p">(</span><span class="n">my_shader</span><span class="p">)</span>
+<span class="w">  </span><span class="p">.</span><span class="n">typedef_source</span><span class="p">(</span><span class="s">&quot;GPU_shader_shared.h&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="p">.</span><span class="n">uniform_buf</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;MyStruct&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;my_struct&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p>This will create a uniform block binding at location 0 with content of type
+<code>MyStruct</code> named <code>my_struct</code>. The struct members can then be accessed also using
+<code>my_struct</code> (ex: <code>my_struct.thickness</code>).</p>
+<p>Uniform and storage buffers can also be declared as array of struct like this:</p>
+<div class="highlight"><pre><span></span><code><span class="n">GPU_SHADER_CREATE_INFO</span><span class="p">(</span><span class="n">my_shader</span><span class="p">)</span>
+<span class="w">  </span><span class="p">.</span><span class="n">typedef_source</span><span class="p">(</span><span class="s">&quot;GPU_shader_shared.h&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="p">.</span><span class="n">storage_buf</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;MyStruct&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;my_struct[]&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p>A shader create info can contain multiple 'typedef_source'. They are included
+only once and before any resource declaration (see gpu shader source ordering).</p>
+<h4 id="geometry-shaders">Geometry shaders<a class="headerlink" href="#geometry-shaders" title="Permanent link">&para;</a></h4>
+<p>Due to specific requirements of certain gpu backend input and output parameters of this stage
+should always use a named structure.</p>
+<h4 id="compute-shaders">Compute shaders<a class="headerlink" href="#compute-shaders" title="Permanent link">&para;</a></h4>
+<p>For compute shaders the workgroup size must be defined. This can be done by calling
+the <code>local_group_size</code> function. This function accepts 1-3 parameters to define the
+local working group size for the x, y and z dimension.</p>
+<div class="highlight"><pre><span></span><code><span class="n">GPU_SHADER_CREATE_INFO</span><span class="p">(</span><span class="n">draw_hair_refine_compute</span><span class="p">)</span>
+<span class="w">    </span><span class="cm">/* ... */</span>
+<span class="w">    </span><span class="cm">/* define a local group size where x=1 and y=1, z isn&#39;t defined. Missing parameters would fallback</span>
+<span class="cm">     * to the platform default value. For OpenGL 4.3 this is also 1. */</span>
+<span class="w">    </span><span class="p">.</span><span class="n">local_group_size</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">compute_source</span><span class="p">(</span><span class="s">&quot;common_hair_refine_comp.glsl&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="cm">/* ... */</span>
+</code></pre></div>
+<h3 id="c-c-code-sharing">C &amp; C++ Code sharing<a class="headerlink" href="#c-c-code-sharing" title="Permanent link">&para;</a></h3>
+<p>Code that needs to be shared between CPU and GPU implementation can also be put into
+'shader_shared' header files. However, only a subset of C and C++ syntax is allowed
+for cross compilation to work:</p>
+<ul>
+<li>No arrays except as input parameters.</li>
+<li>No parameter reference <code>&amp;</code> and likewise <code>out</code> and <code>inout</code>.</li>
+<li>No pointers or references.</li>
+<li>No iterators.</li>
+<li>No namespace.</li>
+<li>No template.</li>
+<li>Use float suffix by default for float literals to avoid double promotion in C++.</li>
+<li>Functions working on floats (ex: <code>round()</code>, <code>exp()</code>, <code>pow()</code> ...) might have different
+  implementation on CPU and GPU.
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See {{BugReport|103026}} for more detail.</p>
+</div>
+</li>
+</ul>
+<p>You can also declare <code>enum</code> inside these files. They will be correctly translated by
+our translation layer for GLSL compilation. However some rules to apply:</p>
+<ul>
+<li>Always use <code>u</code> suffix for enum values. GLSL do not support implicit cast and enums are treated as <code>uint</code> under the hood.</li>
+<li>Define all enum values. This is to simplify our custom pre-processor code.</li>
+<li>(C++ only) Always use <code>uint32_t</code> as underlying type (<code>enum eMyEnum : uint32_t</code>).</li>
+<li>(C only) do '''NOT''' use enum types inside UBO/SSBO structs and use <code>uint</code> instead (because <code>enum</code> size is implementation dependent in C).</li>
+</ul>
+<p>See <a href="shader_builder/">Shader builder</a> for a validation tool for shaders.</p>
+<h2 id="shader">Shader<a class="headerlink" href="#shader" title="Permanent link">&para;</a></h2>
+<p>A GPUShader is a program that runs on the GPU. The program can have several stages
+depending on the its usage. When rendering geometry it should at least have a vertex and fragment stage, it can have an optional geometry stage. It is not recommended to use geometry stages as Apple doesn't have support for it.</p>
+<div class="highlight"><span class="filename">Create shader</span><pre><span></span><code><span class="n">GPUShader</span><span class="w"> </span><span class="o">*</span><span class="n">sh_depth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GPU_shader_create_from_info_name</span><span class="p">(</span><span class="s">&quot;my_shader&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p>This will lookup the shader create info with the name <code>my_shader</code>, loads and compile
+the vertex and fragment stage and link the stages into a program that can be used on
+the GPU. It also generates a GPUShaderInterface that handles lookup to input parameters
+(attributes, uniforms, uniform buffers, textures and shader storage buffer objects).</p>
+<h2 id="geometry">Geometry<a class="headerlink" href="#geometry" title="Permanent link">&para;</a></h2>
+<p>Geometry is defined by a <code>GPUPrimType</code>, one index buffer (IBO) and one or more vertex
+buffers (VBOs). The GPUPrimType defines how the index buffer should be interpreted.</p>
+<p>Indices inside the index buffer define the order how to read elements from the vertex
+buffer(s). Vertex buffers are a table where each row contains the data of an element.
+When multiple vertex buffers are used they are considered to be different columns of
+the same table. This matches how GL backends organize geometry on GPUs.</p>
+<p>Index buffers can be created by using a <code>GPUIndexBufferBuilder</code></p>
+<div class="highlight"><span class="filename">Create Index Buffer</span><pre><span></span><code><span class="n">GPUIndexBufBuilder</span><span class="w"> </span><span class="n">ibuf</span>
+<span class="cm">/* Construct a builder to create an index buffer that has 6 indexes.</span>
+<span class="cm"> * And the number of elements in the vertex buffer is 12. */</span>
+<span class="n">GPU_indexbuf_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ibuf</span><span class="w"> </span><span class="n">GPU_PRIM_TRIS</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="p">);</span>
+
+<span class="n">GPU_indexbuf_add_tri_verts</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ibuf</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+<span class="n">GPU_indexbuf_add_tri_verts</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ibuf</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
+<span class="n">GPU_indexbuf_add_tri_verts</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ibuf</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">);</span>
+<span class="n">GPU_indexbuf_add_tri_verts</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ibuf</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">);</span>
+<span class="n">GPU_indexbuf_add_tri_verts</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ibuf</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
+<span class="n">GPU_indexbuf_add_tri_verts</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ibuf</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="mi">11</span><span class="p">);</span>
+
+<span class="n">GPUIndexBuf</span><span class="w"> </span><span class="o">*</span><span class="n">ibo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GPU_indexbuf_build</span><span class="p">(</span><span class="o">&amp;</span><span class="n">builder</span><span class="p">)</span>
+</code></pre></div>
+<p>Vertex buffers contain data and attributes inside vertex buffers should match the attributes of the shader.
+Before a buffer can be created, the format of the buffer should be defined.</p>
+<div class="highlight"><span class="filename">Create Vertex Format</span><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="n">GPUVertFormat</span><span class="w"> </span><span class="n">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+<span class="n">GPU_vertformat_clear</span><span class="p">(</span><span class="o">&amp;</span><span class="n">format</span><span class="p">);</span>
+<span class="n">GPU_vertformat_attr_add</span><span class="p">(</span><span class="o">&amp;</span><span class="n">format</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;pos&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">GPU_COMP_32</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">GPU_FETCH_FLOAT</span><span class="p">);</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Create Vertex Buffer</span><pre><span></span><code><span class="n">GPUVertBuf</span><span class="w"> </span><span class="o">*</span><span class="n">vbo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GPU_vertbuf_create_with_format</span><span class="p">(</span><span class="o">&amp;</span><span class="n">format</span><span class="p">);</span>
+<span class="n">GPU_vertbuf_data_alloc</span><span class="p">(</span><span class="n">vbo</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="p">);</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Fill vertex buffer with data</span><pre><span></span><code><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">12</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="n">GPU_vertbuf_attr_set</span><span class="p">(</span><span class="n">vbo</span><span class="p">,</span><span class="w"> </span><span class="n">pos</span><span class="p">.</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">positions</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="batch">Batch<a class="headerlink" href="#batch" title="Permanent link">&para;</a></h2>
+<p>Use GPUBatches to draw geometry. A GPUBatch combines the geometry with a shader
+and its parameters and has functions to perform a draw call. To perform a draw
+call the next steps should be taken.</p>
+<ol>
+<li>Construct its geometry.</li>
+<li>Construct a GPUBatch with the geometry.</li>
+<li>Attach a GPUShader to the GPUBatch with the <code>GPU_batch_set_shader</code> function or attach a built in shader using the <code>GPU_batch_program*</code> functions.</li>
+<li>Set the parameters of the GPUShader using the <code>GPU_batch_uniform*</code>/<code>GPU_batch_texture_bind</code> functions.</li>
+<li>Perform a <code>GPU_batch_draw*</code> function.</li>
+</ol>
+<p>This will draw on the geometry on the active frame buffer using the shader and the loaded parameters.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>GPUTextures can be used as render target or as input of a shader, but not inside the same drawing call.</p>
+</div>
+<h2 id="immediate-mode-and-built-in-shaders">Immediate mode and built in shaders<a class="headerlink" href="#immediate-mode-and-built-in-shaders" title="Permanent link">&para;</a></h2>
+<p>To ease development for drawing panels/UI buttons the GPU module provides an
+immediate mode. This is a wrapper on top of what is explained above, but in a
+more legacy opengl fashion.</p>
+<p>Blender provides builtin shaders. This is widely used to draw the user interface.
+A shader can be activated by calling <code>immBindBuiltinProgram</code></p>
+<div class="highlight"><pre><span></span><code><span class="n">immBindBuiltinProgram</span><span class="p">(</span><span class="n">GPU_SHADER_2D_UNIFORM_COLOR</span><span class="p">);</span>
+</code></pre></div>
+<p>This shader program needs a vertex buffer with a pos attribute, and a color can be set as uniform.</p>
+<div class="highlight"><pre><span></span><code><span class="n">GPUVertFormat</span><span class="w"> </span><span class="o">*</span><span class="n">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">immVertexFormat</span><span class="p">();</span>
+<span class="n">uint</span><span class="w"> </span><span class="n">pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GPU_vertformat_attr_add</span><span class="p">(</span><span class="n">format</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;pos&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">GPU_COMP_F32</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">GPU_FETCH_FLOAT</span><span class="p">);</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="cm">/* Set the color attribute of the shader. */</span>
+<span class="n">immUniformColor4f</span><span class="p">(</span><span class="mf">0.0f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0f</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0f</span><span class="p">);</span>
+</code></pre></div>
+<p>Fill the vertex buffer with the starting and ending position of the line to draw.
+<div class="highlight"><pre><span></span><code><span class="cm">/* Construct a line index buffer with 2 elements (start point and end point to draw) */</span>
+<span class="n">immBegin</span><span class="p">(</span><span class="n">GPU_PRIM_LINES</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+<span class="n">immVertex2f</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">100.0</span><span class="p">);</span>
+<span class="n">immVertex2f</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span><span class="w"> </span><span class="mf">100.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">);</span>
+<span class="n">immEnd</span><span class="p">();</span>
+</code></pre></div></p>
+<p>By calling <code>immEnd</code> the data drawn on the GPU.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Use GPUBatches directly in cases where performance matters. Immediate mode buffers aren't cached, which can lead to poor performance.</p>
+</div>
+<h2 id="tools">Tools<a class="headerlink" href="#tools" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Validate shaders when compiling Blender using <a href="shader_builder/">Shader builder</a></li>
+<li>GPU debugging <a href="renderdoc/">Renderdoc</a></li>
+</ul>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-06-12T13:55:18+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-06-12</span>
+      
+        <br>
+        Created:
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-06-12T13:55:18+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-06-12</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.top", "navigation.instant", "navigation.sections", "search.suggest", "search.highlight", "content.action.view", "content.action.edit"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.b4d07000.min.js"></script>
+      
+        <script src="../../js/timeago.min.js"></script>
+      
+        <script src="../../js/timeago_mkdocs_material.js"></script>
+      
+    
+  <script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
+</html>

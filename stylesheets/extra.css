@@ -1,0 +1,37 @@
+.md-main__inner {
+    margin-top: 0;
+}
+
+body[data-md-color-scheme="default"] {
+    --md-primary-fg-color--dark: hsl(213, 10%, 14%);
+}
+
+body[data-md-color-scheme="slate"] {
+    --md-primary-fg-color--dark: hsl(213, 10%, 14%);
+    --md-default-bg-color: hsl(213, 10%, 18%);
+}
+
+body {
+    --md-primary-fg-color--dark: hsl(213, 10%, 14%);
+}
+
+.md-header {
+    background-color: var(--md-primary-fg-color--dark);
+    --md-primary-bg-color: hsl(213, 5%, 64%);
+}
+
+.md-source:hover,
+.md-header__button:hover {
+    color: white;
+    opacity: unset;
+    transition: color 150ms ease-out;
+}
+
+.md-header__topic:first-child {
+    font-weight: unset;
+}
+
+.md-typeset .admonition,
+.md-typeset details {
+    font-size: 0.77rem;
+}
